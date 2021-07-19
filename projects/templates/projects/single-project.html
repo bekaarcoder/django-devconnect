@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{project.title}}</h2>
+  <p>{{project.description}}</p>
+  {% for tag in tags %}
+    <span>{{tag}}</span>
+  {% endfor %}
+{% endblock content %}
