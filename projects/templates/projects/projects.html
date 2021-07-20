@@ -1,14 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Projects Page</h2>
-  {% for project in projects %}
-    <p>
-      <a href="{% url 'single-project' project.id %}">{{project.title}}</a>
-       - 
-      <a href="{% url 'update-project' project.id %}">Update</a>
-       -
-      <a href="{% url 'delete-project' project.id %}">Delete</a>
-    </p>
-  {% endfor %}
+  <main class="project">
+    <section class="hero-section p-5">
+      <div class="container">
+        <h2 class="text-center pb-4 display-5">SEARCH FOR <strong>PROJECTS</strong></h2>
+        <div class="row justify-content-center">
+          <div class="col-md-5">
+            <input type="text" class="form-control" placeholder="Search by Project Title">
+          </div>
+          <div class="col-md-1">
+            <div class="d-grid">
+              <button type="submit" class="btn btn-secondary">Search</button>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-list p-5">
+      <div class="container">
+        <div class="row">
+          {% for project in projects %}
+          <div class="col-md-4">
+            <div class="card">
+              <a href="{% url 'single-project' project.id %}">
+                <img src="{{project.featured_image.url}}" class="card-img-top" alt="{{project.title}}">
+              </a>          
+              <div class="card-body">
+                <h5 class="card-title">{{project.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">By Shashank</h6>
+                <p class="card-text">30% Positive Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})</p>
+                <p class="card-text">
+                  {% for tag in project.tags.all %}
+                    <span class="badge bg-info">{{tag}}</span>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% for project in projects %}
+          <p>
+            <a href="{% url 'single-project' project.id %}">{{project.title}}</a>
+            - 
+            <a href="{% url 'update-project' project.id %}">Update</a>
+            -
+            <a href="{% url 'delete-project' project.id %}">Delete</a>
+          </p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
 {% endblock content %}
