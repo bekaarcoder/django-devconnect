@@ -1,10 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>{{project.title}}</h2>
-  <img src="{{project.featured_image.url}}" alt="" width="500px">
-  <p>{{project.description}}</p>
-  {% for tag in tags %}
-    <span>{{tag}}</span>
-  {% endfor %}
+  <div class="container">
+    <div class="row justify-content-center my-5">
+      <div class="col-md-3">
+        <h3 class="text-muted">TOOLS & STACKS</h3>
+        <h4 class="mt-4">
+          {% for tag in tags %}
+            <span class="tag badge rounded-pill bg-info my-1">{{tag}}</span>
+          {% endfor %}
+        </h4>
+        <div class="mt-4">
+          {% if project.source_link %}
+            <a href="{{project.source_link}}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-up-right-circle"></i> Source Code</a>
+          {% endif %}
+          
+          {% if project.demo_link %}
+            <a href="{{project.demo_link}}" target="_blank" class="btn btn-sm btn-outline-success"><i class="bi bi-arrow-up-right-circle"></i> Demo</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="{{project.featured_image.url}}" class="img-fluid rounded mx-auto d-block">
+        <div class="text-info mt-3">Shashank</div>
+        <h3 class="mt-1"><strong>{{project.title}}</strong></h3>
+        <h4 class="text-muted mt-4">ABOUT THE PROJECT</h4>
+        <p class="mb-4">{{project.description}}</p>
+        <hr>
+        <h4 class="text-muted mt-3">FEEDBACK</h4>
+        <p class="lead text-muted">30% Positive Feedback (20 Votes)</p>
+        <form action="" class="mt-4">
+          <div class="mb-3">
+            <textarea class="form-control" rows="3" placeholder="Write your comments here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-secondary">Post Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
