@@ -42,3 +42,33 @@ body {
 .form-tags li label input {
     margin-right: 5px;
 }
+
+.profile-image {
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #abd2d8;
+}
+
+.profile-image img {
+    width: 100%;
+}
+
+.profile-image-main {
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #abd2d8;
+}
+
+.profile-image-main img {
+    width: 100%;
+}
+
+.social-media-links a {
+    color: #65adb8;
+}
+
+.profile-info {
+    text-align: justify;
+}

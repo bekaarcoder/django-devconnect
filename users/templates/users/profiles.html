@@ -1,5 +1,57 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <h2>User Profiles</h2>
+  <main class="profiles">
+    <section class="bg-dark p-5">
+      <div class="container">
+        <h2 class="text-center text-light display-5">CONNECT WITH <strong>DEVELOPERS</strong></h2>
+        <h2 class="text-center text-light display-5">FROM AROUND THE WORLD</h2>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-5">
+            <input type="text" class="form-control" placeholder="Search by developer name">
+          </div>
+          <div class="col-md-1">
+            <div class="d-grid">
+              <button type="submit" class="btn btn-secondary">Search</button>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-list p-5">
+      <div class="container">
+        <div class="row">
+          {% for profile in profiles %}
+            <div class="col-md-4">
+              <a href="{% url 'user-profile' profile.id %}" class="text-decoration-none text-reset">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="profile-head d-flex align-items-center">
+                      <div class="profile-image">
+                        <img src="{{profile.profile_image.url}}" alt="">
+                      </div>
+                      <div class="profile-intro ms-3">
+                        <h4>{{profile.name}}</h4>
+                        <p class="lead text-muted"><strong>{{profile.short_bio}}</strong></p>
+                      </div>
+                    </div>
+                    <div class="profile-info mt-3">
+                      <p>{{profile.bio|slice:"150"}}</p>
+                    </div>
+                    <h5 class="mt-1">
+                      {% for skill in profile.skill_set.all %}
+                        <span class="tag badge rounded-pill bg-info my-1">{{skill.name}}</span>
+                      {% endfor %}
+                    </h5>
+                  </div>
+                </div>
+              </a>             
+            </div>
+          {% endfor %}          
+        </div>
+      </div>
+    </section>
+  </main>
 {% endblock content %}

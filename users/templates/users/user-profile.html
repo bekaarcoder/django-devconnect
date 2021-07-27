@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row justify-content-center py-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-image-main d-block mx-auto">
+                        <img src="{{profile.profile_image.url}}" alt="">
+                    </div>
+                    <h2 class="text-center my-2">{{profile.name}}</h2>
+                    <p class="text-center text-muted"><strong>{{profile.short_bio}}</strong></p>
+                    <p class="text-center text-muted lead">Based in {{profile.location}}</p>
+                    <div class="social-media-links text-center">
+                        {% if profile.social_github %}
+                            <a href="{{profile.social_github}}" class="fs-2"><i class="bi bi-github"></i></a>
+                        {% endif %}
+                        {% if profile.social_twitter %}
+                            <a href="{{profile.social_twitter}}" class="fs-2 ms-2"><i class="bi bi-twitter"></i></a>
+                        {% endif %}                      
+                        {% if profile.social_linkedin %}
+                            <a href="{{profile.social_linkedin}}" class="fs-2 ms-2"><i class="bi bi-linkedin"></i></a>
+                        {% endif %}
+                        {% if profile.social_youtube %}
+                            <a href="{{profile.social_youtube}}" class="fs-2 ms-2"><i class="bi bi-youtube"></i></a>
+                        {% endif %}
+                        {% if profile.social_website %}
+                            <a href="{{profile.social_website}}" class="fs-2 ms-2"><i class="bi bi-globe"></i></a>
+                        {% endif %}                       
+                    </div>
+                    <button class="btn btn-lg btn-success d-block mx-auto mt-4">Send Message</button>      
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h3>ABOUT ME</h3>
+            <p class="text-muted">{{profile.bio}}</p>
+            <h3 class="mt-5">SKILLS</h3>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <h5 class="text-muted">JavaScript</h5>
+                </div>
+                <div class="col-md-10">
+                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <h5 class="text-muted">React JS</h5>
+                </div>
+                <div class="col-md-10">
+                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <h5 class="text-muted">NodeJS & Express</h5>
+                </div>
+                <div class="col-md-10">
+                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
+                </div>
+            </div>
+            <h4 class="mt-4 text-muted"><strong>OTHER SKILLS</strong></h4>
+            <h5 class="mt-2">
+                <span class="tag badge rounded-pill bg-secondary my-1">Figma</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">HTML</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">CSS</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">Python</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">Django</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">MongoDB</span>
+                <span class="tag badge rounded-pill bg-secondary my-1">Flask</span>
+            </h5>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
