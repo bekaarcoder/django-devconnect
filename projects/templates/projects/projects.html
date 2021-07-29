@@ -29,7 +29,7 @@
               </a>          
               <div class="card-body">
                 <h5 class="card-title">{{project.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">By {{project.owner.name}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">By <a href="{% url 'user-profile' project.owner.id %}" class="text-decoration-none text-info">{{project.owner.name}}</a></h6>
                 <p class="card-text">30% Positive Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})</p>
                 <p class="card-text">
                   {% for tag in project.tags.all %}

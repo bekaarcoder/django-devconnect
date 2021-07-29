@@ -82,3 +82,7 @@
     otheritem = OtherModule.objects.create(attribute='value')
     item.relationshipname.add(otheritem)
     ```
+
+## Django Signals
+
+![Django Signals](django_signals.jpg)

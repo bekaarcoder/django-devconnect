@@ -37,41 +37,48 @@
         <div class="col-md-7">
             <h3>ABOUT ME</h3>
             <p class="text-muted">{{profile.bio}}</p>
+
             <h3 class="mt-5">SKILLS</h3>
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <h5 class="text-muted">JavaScript</h5>
+            {% for skill in top_skills %}
+                <div class="row mt-3">
+                    <div class="col-md-2">
+                        <h5 class="text-muted">{{skill.name}}</h5>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="text-muted">{{skill.description}}</p>
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <h5 class="text-muted">React JS</h5>
-                </div>
-                <div class="col-md-10">
-                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <h5 class="text-muted">NodeJS & Express</h5>
-                </div>
-                <div class="col-md-10">
-                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident nihil qui, amet impedit velit mollitia, beatae reiciendis harum incidunt esse maiores error inventore deserunt temporibus corrupti vitae, atque ex recusandae.</p>
-                </div>
-            </div>
+            {% endfor %}
+            
             <h4 class="mt-4 text-muted"><strong>OTHER SKILLS</strong></h4>
             <h5 class="mt-2">
-                <span class="tag badge rounded-pill bg-secondary my-1">Figma</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">HTML</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">CSS</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">Python</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">Django</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">MongoDB</span>
-                <span class="tag badge rounded-pill bg-secondary my-1">Flask</span>
+                {% for skill in other_skills %}
+                    <span class="tag badge rounded-pill bg-secondary my-1">{{skill.name}}</span>
+                {% endfor %}
             </h5>
+
+            <h3 class="mt-5">PROJECTS</h3>
+            <div class="row mt-4">
+                {% for project in profile.project_set.all %}
+                <div class="col-md-6">
+                  <div class="card">
+                    <a href="{% url 'single-project' project.id %}">
+                      <img src="{{project.featured_image.url}}" class="card-img-top" alt="{{project.title}}">
+                    </a>          
+                    <div class="card-body">
+                      <h5 class="card-title">{{project.title}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">By {{project.owner.name}}</h6>
+                      <p class="card-text">30% Positive Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})</p>
+                      <p class="card-text">
+                        {% for tag in project.tags.all %}
+                          <span class="badge bg-info">{{tag}}</span>
+                        {% endfor %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
         </div>
     </div>
   </div>
