@@ -36,6 +36,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
+    messages.info(request, "User logged out successfully!")
     return redirect("login")
 
 
@@ -50,13 +51,13 @@ def register_user(request):
             user.username = user.username.lower()
             user.save()
 
-            messages.success(request, "User account created successfully.")
+            # messages.success(request, "User account created successfully!")
 
             login(request, user)
             return redirect("profiles")
         else:
             messages.error(
-                request, "An error has occurred during registration."
+                request, "An error has occurred during registration!"
             )
 
     context = {"page": page, "form": form}

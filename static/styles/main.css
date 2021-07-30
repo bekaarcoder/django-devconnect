@@ -7,7 +7,11 @@
 } */
 
 body {
-    background: #f2f5f7;
+    background: #f2f5f7 !important;
+}
+
+.navbar {
+    z-index: 2;
 }
 
 .hero-section {
@@ -71,4 +75,34 @@ body {
 
 .profile-info {
     text-align: justify;
+}
+
+.auth {
+    /* background: transparent !important; */
+    /* height: 95vh; */
+    z-index: 1;
+    position: relative;
+}
+
+.auth::after {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* bottom: 0;
+    right: 0; */
+    content: "";
+    opacity: 0.2;
+    background-image: url("../images/patterns.jpg");
+    background-size: 500px;
+}
+
+.invalid-feedback {
+    display: block !important;
+}
+
+.alert {
+    z-index: 2;
 }
