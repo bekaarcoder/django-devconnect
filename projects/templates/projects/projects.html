@@ -23,7 +23,7 @@
         <div class="row">
           {% for project in projects %}
           <div class="col-md-4">
-            <div class="card">
+            <div class="card h-100">
               <a href="{% url 'single-project' project.id %}">
                 <img src="{{project.featured_image.url}}" class="card-img-top" alt="{{project.title}}">
               </a>          
