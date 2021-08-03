@@ -6,6 +6,7 @@ from .views import (
     logout_user,
     register_user,
     user_account,
+    edit_account,
 )
 
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("register/", register_user, name="register"),
     path("account/", user_account, name="account"),
+    path("edit-account/", edit_account, name="edit-account"),
 ]

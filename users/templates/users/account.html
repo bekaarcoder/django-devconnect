@@ -29,7 +29,7 @@
                             <a href="{{profile.social_website}}" class="fs-2 ms-2"><i class="bi bi-globe"></i></a>
                         {% endif %}                       
                     </div>
-                    <button class="btn btn-sm btn-outline-info d-block mx-auto mt-4"><i class="bi bi-pencil-square"></i> Edit Profile</button>     
+                    <a href="{% url 'edit-account' %}" class="btn btn-sm btn-outline-info d-block mx-auto mt-4"><i class="bi bi-pencil-square"></i> Edit Profile</a>     
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
 
             <div class="skills_view d-flex justify-content-between align-items-center mt-5">
                 <h3>PROJECTS</h3>
-                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-plus-lg"></i> Add Project</button>
+                <a href="{% url 'create-project' %}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-plus-lg"></i> Add Project</a>
             </div>
             <div class="row mt-4">
                 <div class="col-md-12">
@@ -76,8 +76,8 @@
                                         <p>{{project.description|slice:"150"}}</p>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-end align-items-center">
-                                        <button class="btn btn-sm btn-info me-2"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                        <a href="{% url 'update-project' project.id %}" class="btn btn-sm btn-info me-2"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{% url 'delete-project' project.id %}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>
                             </li>
