@@ -7,6 +7,9 @@ from .views import (
     register_user,
     user_account,
     edit_account,
+    create_skill,
+    update_skill,
+    delete_skill,
 )
 
 
@@ -18,4 +21,7 @@ urlpatterns = [
     path("register/", register_user, name="register"),
     path("account/", user_account, name="account"),
     path("edit-account/", edit_account, name="edit-account"),
+    path("create-skill/", create_skill, name="create-skill"),
+    path("update-skill/<str:pk>/", update_skill, name="update-skill"),
+    path("delete-skill/<str:pk>/", delete_skill, name="delete-skill"),
 ]
