@@ -7,16 +7,18 @@
       <div class="container">
         <h2 class="text-center text-light display-5">CONNECT WITH <strong>DEVELOPERS</strong></h2>
         <h2 class="text-center text-light display-5">FROM AROUND THE WORLD</h2>
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-5">
-            <input type="text" class="form-control" placeholder="Search by developer name">
+        <form action="{% url 'profiles' %}" method="GET">
+          <div class="row justify-content-center mt-5">
+            <div class="col-md-5">
+              <input name="search_query" type="text" class="form-control" placeholder="Search by Developer Name or Skill" value="{{search_query}}">
+            </div>
+            <div class="col-md-1">
+              <div class="d-grid">
+                <button type="submit" class="btn btn-secondary">Search</button>
+              </div>           
+            </div>
           </div>
-          <div class="col-md-1">
-            <div class="d-grid">
-              <button type="submit" class="btn btn-secondary">Search</button>
-            </div>           
-          </div>
-        </div>
+        </form>
       </div>
     </section>
 

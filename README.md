@@ -86,3 +86,7 @@
 ## Django Signals
 
 ![Django Signals](django_signals.jpg)
+
+## Handling many to many relationships
+
+[Link to Docs](https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_many/)
