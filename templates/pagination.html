@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+      <ul class="pagination">
+          {% if queryset.has_previous %}
+          <li {% if queryset.number == 1 %} class="page-item active" {% endif %}>
+            <a {% if search_query == '' %} href="?page=1" {% else %} href="?search_query={{search_query}}&page=1" {% endif %} class="page-link">1</a>
+          </li>
+          <li class="page-item">
+            <!-- <a href="?page={{queryset.previous_page_number}}" class="page-link">&laquo; Previous</a> -->
+            <a {% if search_query == '' %} href="?page={{queryset.previous_page_number}}" {% else %} href="?search_query={{search_query}}&page={{queryset.previous_page_number}}" {% endif %} class="page-link">&laquo; Previous</a>
+          </li>
+        {% endif %}
+        {% if queryset.has_other_pages %}
+          <li class="page-item active">
+            <a href="" class="page-link">{{queryset.number}}</a>
+          </li>
+        {% endif %}
+        {% if queryset.has_next %}
+          <li class="page-item">
+            <a {% if search_query == '' %} href="?page={{queryset.next_page_number}}" {% else %} href="?search_query={{search_query}}&page={{queryset.next_page_number}}" {% endif %} class="page-link">Next &raquo;</a>
+          </li>
+          <li class="page-item">
+            <a {% if search_query == '' %} href="?page={{queryset.paginator.num_pages}}" {% else %} href="?search_query={{search_query}}&page={{queryset.paginator.num_pages}}" {% endif %} class="page-link">{{queryset.paginator.num_pages}}</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+</div>

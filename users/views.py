@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Profile
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 from .utils import search_profiles
@@ -74,6 +75,15 @@ def profiles(request):
         search_query = request.GET.get("search_query")
 
     profiles = search_profiles(request, search_query)
+
+    page = 1
+    if request.GET.get("page"):
+        page = request.GET.get("page")
+    results = 9
+    paginator = Paginator(profiles, results)
+
+    profiles = paginator.page(page)
+
     context = {"profiles": profiles, "search_query": search_query}
     return render(request, "users/profiles.html", context)
 
