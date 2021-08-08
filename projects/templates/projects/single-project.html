@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
   <div class="container">
     <div class="row justify-content-center my-5">
@@ -22,19 +24,53 @@
       </div>
       <div class="col-md-6">
         <img src="{{project.featured_image.url}}" class="img-fluid rounded mx-auto d-block">
-        <div class="text-info mt-3">Shashank</div>
+        <div class="text-info mt-3">{{project.owner.name}}</div>
         <h3 class="mt-1"><strong>{{project.title}}</strong></h3>
         <h4 class="text-muted mt-4">ABOUT THE PROJECT</h4>
         <p class="mb-4">{{project.description}}</p>
         <hr>
         <h4 class="text-muted mt-3">FEEDBACK</h4>
-        <p class="lead text-muted">30% Positive Feedback (20 Votes)</p>
-        <form action="" class="mt-4">
-          <div class="mb-3">
-            <textarea class="form-control" rows="3" placeholder="Write your comments here..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-secondary">Post Comment</button>
-        </form>
+        <p class="lead text-muted">{{project.vote_ratio}}% Positive Feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:'s'}})</p>
+        {% if request.user.profile.id in project.reviewers %}
+          <p class="lead">You have already submitted your review.</p>
+        {% elif request.user.profile == project.owner %}
+          <p></p>
+        {% elif request.user.is_authenticated %}
+          <form action="{% url 'single-project' project.id %}" method="POST" class="mt-4">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label for="" class="form-label">{{field.label}}</label>
+                {{field}}
+              </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-secondary">Add Review</button>
+          </form>
+        {% else %}
+          <p class="lead">Please <a href="{% url 'login' %}?next={{request.path}}">login</a> to submit you review.</p>
+        {% endif %}
+        {% if reviews %}
+          {% for review in reviews %}
+            <div class="row mt-4">
+              <div class="col-md-2">
+                <img src="{{review.owner.profile_image.url}}" alt="" class="img-fluid d-block mx-auto rounded-circle">
+              </div>
+              <div class="col-md-10">
+                <h5 class="text-info"><a class="text-decoration-none text-reset" href="{% url 'user-profile' review.owner.id %}">{{review.owner.name}}</a></h5>
+                {% if review.body %}
+                  <p class="text-muted">{{review.body}}</p>
+                {% elif review.value == "up" %}
+                  <p class="text-muted">{{review.owner.name}} liked the project.</p>
+                {% else %}
+                  <p class="text-muted">{{review.owner.name}} down voted the project.</p>
+                {% endif %}
+                
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="lead mt-3">No reviews for this project.</p>
+        {% endif %}
       </div>
     </div>
   </div>
