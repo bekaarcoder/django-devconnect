@@ -60,7 +60,7 @@
             <h3 class="mt-5">PROJECTS</h3>
             <div class="row mt-4">
                 {% for project in profile.project_set.all %}
-                <div class="col-md-6">
+                <div class="col-md-6 my-2">
                   <div class="card">
                     <a href="{% url 'single-project' project.id %}">
                       <img src="{{project.featured_image.url}}" class="card-img-top" alt="{{project.title}}">

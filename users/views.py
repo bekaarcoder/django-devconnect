@@ -183,3 +183,25 @@ def delete_skill(request, pk):
 
     context = {"skill": skill}
     return render(request, "users/delete_skill.html", context)
+
+
+@login_required(login_url="login")
+def inbox(request):
+    profile = request.user.profile
+    message_requests = (
+        profile.messages.all()
+    )  # using the related_name='messages' defined in the model
+    unread_messages = message_requests.filter(is_read=False).count()
+    context = {"message_requests": message_requests, "unread": unread_messages}
+    return render(request, "users/inbox.html", context)
+
+
+@login_required(login_url="login")
+def view_message(request, pk):
+    profile = request.user.profile
+    message = profile.messages.get(id=pk)
+    if message.is_read == False:
+        message.is_read = True
+        message.save()
+    context = {"message": message}
+    return render(request, "users/message.html", context)

@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6">
         <img src="{{project.featured_image.url}}" class="img-fluid rounded mx-auto d-block">
-        <div class="text-info mt-3">{{project.owner.name}}</div>
+        <div class="text-info mt-3"><a class="text-decoration-none text-reset" href="{% url 'user-profile' project.owner.id %}">{{project.owner.name}}</a></div>
         <h3 class="mt-1"><strong>{{project.title}}</strong></h3>
         <h4 class="text-muted mt-4">ABOUT THE PROJECT</h4>
         <p class="mb-4">{{project.description}}</p>

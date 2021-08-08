@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+      <div class="row py-5 justify-content-center">
+          <div class="col-md-10">
+              <h3>NEW MESSAGES(<span class="text-info">{{unread}}</span>)</h3>
+              <div class="card mt-4">
+                  <div class="card-body">
+                      <table class="table table-hover align-middle">
+                          <tbody>
+                              {% for message in message_requests %}
+                                <tr {% if message.is_read == False %} class="fw-bold" {% endif %} style="height: 55px;">
+                                    <td>{{message.name}}</td>
+                                    <td><a href="{% url 'message' message.id %}" class="text-decoration-none text-reset">{{message.subject}}</a></td>
+                                    <td>{{message.created_at}}</td>
+                                </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock content %}

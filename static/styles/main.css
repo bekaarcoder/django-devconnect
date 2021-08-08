@@ -10,6 +10,10 @@ body {
     background: #f2f5f7 !important;
 }
 
+br {
+    margin-top: 1em !important;
+}
+
 .navbar {
     z-index: 2;
 }
