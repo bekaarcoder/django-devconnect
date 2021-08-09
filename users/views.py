@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Profile
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from .utils import search_profiles
 
 
@@ -205,3 +205,31 @@ def view_message(request, pk):
         message.save()
     context = {"message": message}
     return render(request, "users/message.html", context)
+
+
+def send_message(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    form = MessageForm()
+
+    try:
+        sender = request.user.profile
+    except:
+        sender = None
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+
+            message.save()
+            messages.success(request, "Message sent succefully!")
+            return redirect("user-profile", pk=recipient.id)
+
+    context = {"form": form, "recipient": recipient}
+    return render(request, "users/message_form.html", context)

@@ -30,7 +30,9 @@
                             <a href="{{profile.social_website}}" class="fs-2 ms-2"><i class="bi bi-globe"></i></a>
                         {% endif %}                       
                     </div>
-                    <button class="btn btn-lg btn-success d-block mx-auto mt-4">Send Message</button>      
+                    {% if request.user.profile.id != profile.id %}
+                        <a href="{% url 'send-message' profile.id %}" class="btn btn-lg btn-success d-block mx-auto mt-4">Send Message</a>      
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+      <div class="row justify-content-center py-5">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-body">
+                      <a href="{% url 'user-profile' recipient.id %}" class="btn btn-sm btn-link"><i class="bi bi-arrow-left"></i> Go Back</a>
+                      <form action="" method="POST" class="mt-4">
+                          {% csrf_token %}
+                          {% if request.user.is_authenticated == False %}
+                            <div class="mb-3">
+                                <label for="" class="form-label">{{form.name.label}}</label>
+                                {{form.name}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">{{form.email.label}}</label>
+                                {{form.email}}
+                            </div>
+                          {% endif %}
+                            <div class="mb-3">
+                                <label for="" class="form-label">{{form.subject.label}}</label>
+                                {{form.subject}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">{{form.body.label}}</label>
+                                {{form.body}}
+                            </div>
+                            <input type="submit" value="Send Message" class="btn btn-secondary">
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock content %}

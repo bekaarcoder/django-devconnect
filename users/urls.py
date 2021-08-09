@@ -12,6 +12,7 @@ from .views import (
     delete_skill,
     inbox,
     view_message,
+    send_message,
 )
 
 
@@ -28,4 +29,5 @@ urlpatterns = [
     path("delete-skill/<str:pk>/", delete_skill, name="delete-skill"),
     path("inbox/", inbox, name="inbox"),
     path("message/<str:pk>/", view_message, name="message"),
+    path("send-message/<str:pk>/", send_message, name="send-message"),
 ]
